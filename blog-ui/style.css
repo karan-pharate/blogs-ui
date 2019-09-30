@@ -1,0 +1,23 @@
+ul {
+  list-style: none;
+}
+h1 {
+  text-align: center; 
+}
+li {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+#loader {
+  text-align: center;
+  font-size: 35px;
+}
+#buttonid {
+  margin: 5px;
+  display: block;
+  border-radius: 10px;
+}
+#blogs {
+  display: none;
+}
