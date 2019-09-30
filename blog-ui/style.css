@@ -13,7 +13,7 @@ li {
   text-align: center;
   font-size: 35px;
 }
-#buttonid {
+.button {
   margin: 5px;
   display: block;
   border-radius: 10px;
@@ -21,3 +21,4 @@ li {
 #blogs {
   display: none;
 }
+

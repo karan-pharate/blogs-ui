@@ -1,33 +1,35 @@
 fetch("http://my-json-server.typicode.com/typicode/demo/posts")
   .then(response => response.json())
   .then(json => {
-    json.map(x => {
+    json.map((x, index) => {
       let ul = document.getElementById("myBlogs");
       let lists = document.getElementsByTagName("li");
       lists[x.id - 1].innerHTML = "Id " + x.id + "<br>" + x.title;
       let btn = document.createElement("BUTTON");
       btn.innerHTML = "show comments";
       lists[x.id - 1].appendChild(btn);
-      btn.setAttribute("id", "buttonid");
+      btn.setAttribute("id", `button-${index}`);
+      btn.classList.add("button");
       document.getElementById("loader").style.display = "none";
       document.getElementById("blogs").style.display = "block";
       btn.addEventListener(
         "click",
-        (showComment = () => {
+        (showComment = event => {
           fetch(" https://my-json-server.typicode.com/typicode/demo/comments")
             .then(response1 => response1.json())
             .then(json1 => {
-              json1.map(y => {
+              json1.map((y, yindex) => {
                 let para = document.createElement("p");
-                if (x.id == y.id) {
+                if (x.id == y.postId) {
                   para.innerHTML =
-                    "Comment Id: " +
-                    y.id +
-                    "<br>Comment: " +
-                    y.body +
-                    "<br> PostId: " +
-                    y.postId;
-                  lists[y.id - 1].appendChild(para);
+                    "<br>Comment: " + y.body + "<br> PostId: " + y.postId;
+                  lists[index].appendChild(para);
+                  document.getElementById(`button-${index}`).disabled = true;
+                }
+                else {
+                para.innerHTML ="No comments to show";
+                lists[index].appendChild(para);
+                document.getElementById(`button-${index}`).disabled = true;
                 }
               });
             });
