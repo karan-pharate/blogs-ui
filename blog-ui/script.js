@@ -18,19 +18,18 @@ fetch("http://my-json-server.typicode.com/typicode/demo/posts")
           fetch(" https://my-json-server.typicode.com/typicode/demo/comments")
             .then(response1 => response1.json())
             .then(json1 => {
+              let para = document.createElement("p");
+
               json1.map((y, yindex) => {
-                let para = document.createElement("p");
                 if (x.id == y.postId) {
                   para.innerHTML =
                     "<br>Comment: " + y.body + "<br> PostId: " + y.postId;
-                  lists[index].appendChild(para);
+                  document.getElementById(`button-${index}`).disabled = true;
+                } else {
+                  para.innerHTML = "No comments to show";
                   document.getElementById(`button-${index}`).disabled = true;
                 }
-                else {
-                para.innerHTML ="No comments to show";
                 lists[index].appendChild(para);
-                document.getElementById(`button-${index}`).disabled = true;
-                }
               });
             });
         })
